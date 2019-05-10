@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Topic</title>
+</head>
+<body>
+<a th:href="@{/}">Back Home</a>
+	<br />
+	<br />
+ <h1>Add Topic</h1>       
+    
+          
+      <form th:action="@{/topic/add}" th:object="${topic}" method="POST">
+         Message:         
+         <input type="text" th:field="*{content}" />
+         <input type="submit" value="Add" />
+          <a th:if="${#fields.hasErrors('content')}">Topic name can not be empty</a>         
+      </form>      
+      <br/>
+
+
+
+</body>
+</html>

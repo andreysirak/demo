@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add User</title>
+</head>
+<body>
+<a th:href="@{/}">Back Home</a>
+	<br />
+	<br />
+ <h1>Add User</h1>       
+    
+        
+      
+      <form th:action="@{/addUser}" th:object="${user}" method="POST">
+      <!-- div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+		</div-->    
+         Username:         
+         <input type="text" th:field="*{username}" value="" />
+         <a th:if="${#fields.hasErrors('username')}" th:errors="*{password}"></a>
+         <br><br>
+         First Name:         
+         <input type="text" th:field="*{firstName}" value=""/>
+          <a th:if="${#fields.hasErrors('firstName')}" th:errors="*{password}"></a>
+         <br><br>
+         Last Name:         
+         <input type="text" th:field="*{lastName}" value=""/>
+          <a th:if="${#fields.hasErrors('lastName')}" th:errors="*{password}"></a>
+         <br><br>
+         Password:         
+         <input type="password" th:field="*{password}" value=""/>
+          <a th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></a> 
+         <br><br>
+         <input type="submit" value="Add" />      
+     </form>      
+      <br/>
+
+
+</body>
+</html>

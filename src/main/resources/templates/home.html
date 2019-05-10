@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+</head>
+<body>
+
+
+      <form th:action="@{/topic/add}" th:object="${user}" method="POST">                  
+         Username:  
+         <input type="text" th:field="*{username}" value="" />
+         <a th:if="${#fields.hasErrors('username')}" th:errors="*{password}"></a>       
+         Password:         
+         <input type="text" th:field="*{password}" value=""/>
+         <a th:if="${#fields.hasErrors('firstName')}" th:errors="*{password}"></a>         
+         <input type="submit" value="Sing in" />  
+        <a th:href="@{/addUser}">Sing Up</a>                         
+      </form>        
+
+
+
+      <h1>Topics</h1>
+      <a href="/topic/add">Add Topic</a>
+      <br/><br/>
+      <div>
+        	<div  th:each ="topic : ${topicsList}"  > 
+            <a th:href=@{/topic/{topicId}(topicId=${topic.id})} th:utext="${topic.content}">         
+         	</a>
+         	<br/>
+         	</div>
+         	<br/>
+         	<br/>
+      </div>
+
+
+
+</body>
+</html>
