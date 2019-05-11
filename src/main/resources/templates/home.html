@@ -7,7 +7,7 @@
 <body>
 
 
-      <form th:action="@{/topic/add}" th:object="${user}" method="POST">                  
+      <form th:action="@{/topic/add}" th:object="${forumUser}" method="POST">                  
          Username:  
          <input type="text" th:field="*{username}" value="" />
          <a th:if="${#fields.hasErrors('username')}" th:errors="*{password}"></a>       

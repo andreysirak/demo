@@ -31,12 +31,12 @@
 	<a th:href="@{/}">Back Home</a>
 	<br />
 	<br />
-	<a th:utext="${topic.content}">...</a>
+	<b th:utext="${topic.content}" style="font-size:14pt" >...</b>
 	<hr />
 	<div>
-		<div th:each="comment : ${listOfFoundComments}"><a th:utext="'<'+${#dates.format(comment.timePlaced, 'dd-MMM-yyyy hh:mm')}+'>  '+${comment.message}"> </a>
+		<div th:each="comment : ${listOfFoundComments}"><a th:utext="'<'+${#dates.format(comment.timePlaced, 'dd-MMM-yyyy hh:mm')}+'> '+${comment.username}+'...'"> </a><b th:utext="${comment.message}" style="font-size:14pt"  >  </b>
 			<a href="#" th:attr="onclick='toggle_visibility('+${comment.id}+');'">..reply</a> 
-			<div th:each="reply : ${comment.listOfReplies}"><a  th:utext="'<'+${#dates.format(reply.timePlaced, 'dd-MMM-yyyy hh:mm')}+'>  '+${reply.message}" style="margin-left: 20px"> </a><br />
+			<div th:each="reply : ${comment.listOfReplies}"><a  th:utext="'<'+${#dates.format(reply.timePlaced, 'dd-MMM-yyyy hh:mm')}+'> '+${reply.username}+'...  '" style="margin-left: 35px"> </a><b th:utext="${reply.message}" style="font-size:14pt"  >  </b><br />
 			</div>
 			<!-- reply text field -->
 			<div th:id="${comment.id}" style="display: none">

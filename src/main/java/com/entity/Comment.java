@@ -28,7 +28,7 @@ public class Comment {
 	@Column(name="topicId", nullable = false)
 	private  Long topicId;
 	
-	@Size(min = 1, max = 30)
+	@Size(min = 1, max = 200)
 	@Column(name="message", nullable = false)
 	private  String message;
 	
@@ -38,8 +38,20 @@ public class Comment {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "commentId")
 	private  List<Reply> reply;
+
+	@Column(name="username")
+	private String username;
 	
 	
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public Long getTopicId() {
 		return topicId;
 	}

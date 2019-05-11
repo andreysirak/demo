@@ -2,6 +2,7 @@ package com.controllers;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.CommentDAO;
 import com.dao.TopicDAO;
+import com.dao.UserHibernateDAOImp;
 import com.entity.Comment;
+import com.entity.ForumUser;
 import com.entity.Reply;
 import com.entity.Topic;
 
@@ -36,6 +39,9 @@ public class TopicController {
 	
 	@Autowired
 	TopicDAO topicDAO;
+	
+	@Autowired
+	UserHibernateDAOImp userHibernateDAOImp;
 		
 	@RequestMapping(value = "/add", method = GET)
 	public String topicPage(Model model) {
@@ -44,10 +50,13 @@ public class TopicController {
 	}	
 
 	@RequestMapping(value = "/add", method = POST)
-	public String addTopic(@Valid Topic topic, Errors errors) {
+	public String addTopic(@Valid Topic topic, Errors errors, Principal principal) {
 		if (errors.hasErrors()) {
 			return "addTopic";
 			}
+		//String username = principal.getName();
+		ForumUser forumUser = userHibernateDAOImp.findByUsername(principal.getName());
+		topic.setUserId(forumUser.getId());
 		topic.setTimePlaced(new Date());
 		topic.setId((long) (Math.random()*100000));
 		topicDAO.addTopic(topic);
@@ -66,10 +75,12 @@ public class TopicController {
 	}
 	
 	@RequestMapping(value = "/{topicId}/addComment", method = POST)
-	public String addComment(@PathVariable long topicId, RedirectAttributes model, @Valid Comment comment, Errors errors) {
+	public String addComment(@PathVariable long topicId, RedirectAttributes model, @Valid Comment comment, Errors errors, Principal principal) {
 		if (errors.hasErrors()) {			
 			return "redirect:/topic/"+topicId;
 			}
+		ForumUser forumUser = userHibernateDAOImp.findByUsername(principal.getName());
+		comment.setUsername(forumUser.getUsername());
 		comment.setTopicId(topicId);
 		comment.setId((long) (Math.random()*100000));
 		comment.setTimePlaced(new Date());
@@ -79,10 +90,12 @@ public class TopicController {
 	}
 	
 	@RequestMapping(value = "/{topicId}/reply", method = POST)
-	public String addReplyToComment(@PathVariable long topicId, @RequestParam long commentId, @Valid Reply reply, Errors errors) {
+	public String addReplyToComment(@PathVariable long topicId, @RequestParam long commentId, @Valid Reply reply, Errors errors, Principal principal) {
 		if (errors.hasErrors()) {			
 			return "redirect:/topic/"+topicId;
 			}
+		ForumUser forumUser = userHibernateDAOImp.findByUsername(principal.getName());
+		reply.setUsername(forumUser.getUsername());
 		reply.setTimePlaced(new Date());
 		reply.setCommentId(commentId);
 		commentDAO.addReply(reply);

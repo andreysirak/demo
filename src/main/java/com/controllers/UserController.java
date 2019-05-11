@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.UserDAO;
-import com.entity.User;
+import com.entity.ForumUser;
 
 @Controller
 @Transactional
@@ -27,7 +27,7 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/addUser", method = GET)
-	public String userForm(Model model, User user) {
+	public String userForm(Model model, ForumUser user) {
 		model.addAttribute(user);
 		return "addUser";	
 		
@@ -40,7 +40,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/addUser", method = POST)
-	public String addUser(RedirectAttributes model, @Valid User user, Errors errors) {
+	public String addUser(RedirectAttributes model, @Valid ForumUser user, Errors errors) {
 		if (errors.hasErrors()) {			
 			return "addUser";
 			}

@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "ForumUser")
+public class ForumUser {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

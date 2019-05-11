@@ -1,6 +1,7 @@
 package com.controllers;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import org.hibernate.validator.internal.util.privilegedactions.NewInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dao.TopicDAO;
-import com.entity.User;
+import com.entity.ForumUser;
 
 @Controller
 public class HomeController {
@@ -26,14 +27,12 @@ public class HomeController {
 	@RequestMapping(value = "/", method = GET)
 	public String home(Model model) {
 		model.addAttribute("topicsList", topicDAO.findAll());
-		model.addAttribute(new User());
+		model.addAttribute(new ForumUser());
 		return "home";
 	}
 	
 	@RequestMapping(value = "/", method = POST)
-	public String login(Model model) {
-		model.addAttribute("topicsList", topicDAO.findAll());
-		model.addAttribute(new User());
+	public String login() {
 		return "home";
 	}
 	

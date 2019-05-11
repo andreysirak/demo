@@ -1,12 +1,12 @@
 package com.dao;
 
-import com.entity.User;
+import com.entity.ForumUser;
 
 public interface UserDAO {
 	
-	void addUser(User user);
+	void addUser(ForumUser user);
 	
-	
+	ForumUser findByUsername(String username);
 	
 	
 	

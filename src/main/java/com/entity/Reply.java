@@ -26,7 +26,7 @@ public class Reply {
 	@Column(name="commentId", nullable = false)
 	private Long commentId;
 	
-	@Size(min = 1, max = 30)
+	@Size(min = 1, max = 200)
 	@Column(name="message", nullable = false)
 	private String message;
 	
@@ -35,6 +35,15 @@ public class Reply {
 	@DateTimeFormat (pattern="MM/dd/yyyy HH:mm")
 	private Date timePlaced;
 	
+	@Column(name="username")
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public Long getId() {
 		return id;
 	}
