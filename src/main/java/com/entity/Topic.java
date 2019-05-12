@@ -42,6 +42,9 @@ public class Topic {
 	@Column(name="userId")
 	private Long userId;
 	
+//	@Formula("")
+//	private String username;
+	
 	
 	
 	public Long getUserId() {
