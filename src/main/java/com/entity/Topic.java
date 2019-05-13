@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,20 +41,28 @@ public class Topic {
 	@DateTimeFormat (pattern="MM/dd/yyyy HH:mm")
 	private Date timePlaced;
 	
-	@Column(name="userId")
-	private Long userId;
+//	@Column(name="userId")
+//	private Long userId;
 	
-//	@Formula("")
-//	private String username;
+
+	 @ManyToOne(fetch=FetchType.EAGER)
+	 @JoinColumn(name="userid", nullable = false)
+	 private ForumUser forumUser;
 	
 	
 	
-	public Long getUserId() {
-		return userId;
+	public ForumUser getForumUser() {
+		return forumUser;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setForumUser(ForumUser forumUser) {
+		this.forumUser = forumUser;
 	}
+//	public Long getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(Long userId) {
+//		this.userId = userId;
+//	}
 	public Long getId() {
 		return id;
 	}

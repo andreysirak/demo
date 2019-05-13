@@ -16,6 +16,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
          <input type="password"  name='password' value=""/>          
          <input type="submit" value="Sing in" />  
         <a th:href="@{/addUser}">Sing Up</a> 
+        <a th:if="${param.error}" class="alert alert-danger">Invalid username and password.</a>
 </form>  
       
 <a sec:authorize="isAuthenticated()">
@@ -35,8 +36,8 @@ Hello <span  sec:authentication="name">someone</span>
       <br/><br/>
       <div>
         	<div  th:each ="topic : ${topicsList}"  > 
-            <a th:href=@{/topic/{topicId}(topicId=${topic.id})} th:utext="${topic.content}">         
-         	</a>
+            <a th:href=@{/topic/{topicId}(topicId=${topic.id})} th:utext="${topic.content}" style="font-size:14pt;font-weight:bold;text-decoration: none"  ></a>         
+         	<a th:utext="' ('+${topic.forumUser.username}+')'"></a>
          	<br/>
          	</div>
          	<br/>

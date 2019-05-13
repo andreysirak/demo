@@ -18,15 +18,15 @@
 		</div-->    
          Username:         
          <input type="text" th:field="*{username}" value="" />
-         <a th:if="${#fields.hasErrors('username')}" th:errors="*{password}"></a>
+         <a th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></a>
          <br><br>
          First Name:         
          <input type="text" th:field="*{firstName}" value=""/>
-          <a th:if="${#fields.hasErrors('firstName')}" th:errors="*{password}"></a>
+          <a th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></a>
          <br><br>
          Last Name:         
          <input type="text" th:field="*{lastName}" value=""/>
-          <a th:if="${#fields.hasErrors('lastName')}" th:errors="*{password}"></a>
+          <a th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></a>
          <br><br>
          Password:         
          <input type="password" th:field="*{password}" value=""/>

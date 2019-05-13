@@ -56,7 +56,12 @@ public class TopicController {
 			}
 		//String username = principal.getName();
 		ForumUser forumUser = userHibernateDAOImp.findByUsername(principal.getName());
-		topic.setUserId(forumUser.getId());
+		
+		//testing add Comment bug after adding @ManyToOne on userId
+		//topic.setUserId(forumUser.getId());
+		
+		topic.setForumUser(forumUser);
+		
 		topic.setTimePlaced(new Date());
 		topic.setId((long) (Math.random()*100000));
 		topicDAO.addTopic(topic);

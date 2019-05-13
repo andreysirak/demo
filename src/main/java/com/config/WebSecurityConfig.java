@@ -20,7 +20,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers("/topic/add", "/topic/{topicId}/addComment", "/topic/{topicId}/reply").authenticated()
 		.anyRequest().permitAll()
-//		.and().formLogin().loginProcessingUrl("/check_login").loginPage("/")
 		.and()
 		.formLogin().loginPage("/").loginProcessingUrl("/login_check").and()
 		.httpBasic()

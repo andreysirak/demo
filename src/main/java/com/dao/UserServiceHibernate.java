@@ -26,16 +26,15 @@ public class UserServiceHibernate implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		ForumUser user = userHibernateDAOImp.findByUsername(username);
 					
-		List<GrantedAuthority> authorities =
-				new ArrayList<GrantedAuthority>();
-				authorities.add(new SimpleGrantedAuthority("USER"));
+//		List<GrantedAuthority> authorities =
+//				new ArrayList<GrantedAuthority>();
+//				authorities.add(new SimpleGrantedAuthority("USER"));
 				PasswordEncoder encoder =
 					     PasswordEncoderFactories.createDelegatingPasswordEncoder();
 			return User.withUsername(user.getUsername())
                     .password(encoder.encode(user.getPassword()))
-                    .roles("USER").build();
-				
-		//return new User(user.getUsername(), user.getPassword(), authorities);
+                    .roles("USER").build();				
+		
 	}
 
 }

@@ -13,8 +13,8 @@
           
       <form th:action="@{/topic/add}" th:object="${topic}" method="POST">
          Message:         
-         <input type="text" th:field="*{content}" />
-         <input type="submit" value="Add" />
+         <input type="text" th:field="*{content}" size="70" />
+         <input type="submit" value="Add"  />
           <a th:if="${#fields.hasErrors('content')}">Topic name can not be empty</a>         
       </form>      
       <br/>

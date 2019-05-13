@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
 import com.entity.Topic;
@@ -25,6 +26,7 @@ public class TopicHibernateDAOImpl implements TopicDAO{
 	}
 
 	@Override
+	@PreAuthorize("hasRole('USER')")
 	public void addTopic(Topic topic) {
 		Session session = this.sessionFactory.getCurrentSession();
 		//session.beginTransaction();

@@ -23,10 +23,7 @@ public class UserHibernateDAOImp implements UserDAO {
 	}
 
 	@Override
-	public ForumUser findByUsername(String username) {
-		//Session session = this.sessionFactory.getCurrentSession();	
-		//return session.createQuery("from User u where u.username = :username").setParameter("username", username);
-		//return null;
+	public ForumUser findByUsername(String username) {		
 		String hql="from ForumUser u where u.username = :username";
 		 return sessionFactory.getCurrentSession()
 		            .createQuery(hql, ForumUser.class)

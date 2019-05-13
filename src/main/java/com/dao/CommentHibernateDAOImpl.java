@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
 import com.entity.Comment;
@@ -26,6 +27,7 @@ public class CommentHibernateDAOImpl implements CommentDAO {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('USER')")
 	public void addComment(Comment comment) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(comment);
@@ -34,6 +36,7 @@ public class CommentHibernateDAOImpl implements CommentDAO {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('USER')")
 	public void addReply(Reply reply) {
 		Session session = this.sessionFactory.getCurrentSession();
 		
